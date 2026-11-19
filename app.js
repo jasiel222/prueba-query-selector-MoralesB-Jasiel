@@ -1,39 +1,32 @@
-//imprimir el titulo del documento
+// Imprimir el titulo del documento
 console.log("El titulo de esta pagina es:", document.title);
 
-//guardar el contenido de la id
+// Guardar el contenido de la id
 let titulo = document.querySelector("#titulopr");
-
 console.log(titulo);
-
-//extraer y editar propiedades
 console.log(titulo.textContent);
 
-titulo.textContent = "Editado desde javascript"
+// Editar propiedades
+titulo.textContent = "Inventario de productos";
 titulo.style.color = "white";
-titulo.style.background = "royalblue";
-titulo.stylefontSize = "1.5rem;";
-titulo.textContent = "texto nuevo";
-
-titulo.textContent = titulo.textContent + "Texto nuevo";
-titulo.textContent += "otro texto nuevo";
+titulo.style.background = "#1d4ed8";
+titulo.style.fontSize = "1.5rem";
 
 let parrafo = document.querySelector("#parrafopr");
-
-parrafo.innerHTML += "nuevo texto <i> pero este esta en cursivas </i>";
+parrafo.insertAdjacentHTML(
+    "afterend",
+    "<p>Nuevo texto <i>pero este está en cursivas</i></p>"
+);
 
 let caja1 = document.querySelector("#caja1");
-
-caja1.innerHTML += "<p>Parrafo de la caja</p>";
-
-caja1.classList.add("noaprobado");
-
 let presupuesto = prompt("Introduce el presupuesto");
 
-if(presupuesto >= 1200){
+if (presupuesto !== null && Number(presupuesto) >= 1200) {
     caja1.classList.add("aprobado");
-}else{
-    caja1.classList.add("noaprobado")
+    caja1.innerHTML = "<p>Presupuesto aprobado</p>";
+} else {
+    caja1.classList.add("noaprobado");
+    caja1.innerHTML = "<p>Presupuesto no aprobado</p>";
 }
 
 const bodega = [
@@ -42,25 +35,25 @@ const bodega = [
     {nombre: "Jasiel 3", precio: 350, stock: 0},
     {nombre: "Jasiel 4", precio: 1000, stock: 10},
     {nombre: "Jasiel 5", precio: 450, stock: 5}
-]
+];
 
-let caja = document.querySelector("#cajavacia")
-
+let caja = document.querySelector("#cajavacia");
 bodega.forEach(item => {
     let clasecolor = "";
-    if(item.stock> 0){
-        clasecolor = "aprobado"
+    let estado = "";
+    if (item.stock > 0) {
+        clasecolor = "aprobado";
+        estado = "Disponible";
+    } else {
+        clasecolor = "noaprobado";
+        estado = "Agotado";
     }
-    else{
-        clasecolor = "noaprobado"
-    }
-
     caja.innerHTML += `
-    <div class = "cajaproducto ${clasecolor}">
-    <h2>Producto: ${item.nombre}</h2>
-    <p>Precio: $ ${item.precio}</p>
-    <p>stock:  ${item.stock}</p>
-
-    </div>
-    `
-})
+        <div class="cajaproducto ${clasecolor}">
+            <h2>Producto: ${item.nombre}</h2>
+            <p>Precio: $ ${item.precio}</p>
+            <p>Stock: ${item.stock}</p>
+            <p>Estado: ${estado}</p>
+        </div>
+    `;
+});

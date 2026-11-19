@@ -1,11 +1,21 @@
-.aprobado{
-    background-color: green;
-
+body {
+    background-color: white;
+    color: #222222;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
 }
-.noaprobado{
-    background-color: red;
+.aprobado {
+    background-color: #e8f5e9;
+    color: #14532d;
 }
-
-.cajaproducto{
-    border: 1px solid black;
+.noaprobado {
+    background-color: #ffebee;
+    color: #991b1b;
 }
+.cajaproducto {
+    border: 1px solid #555555;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+#titulopr { padding: 10px; }
+#caja1 { padding: 10px; }
